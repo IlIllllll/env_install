@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
-url_prefix = 'http://fishros.com/install/install1s/'
+url_prefix = '/home/wyh/Desktop/program/env_install/'
 
 base_url = url_prefix+'tools/base.py'
 
@@ -32,7 +32,8 @@ tools ={
     12: {'tip':'一键安装:PlateformIO MicroROS开发环境(支持Fishbot)',      'type':INSTALL_SOFTWARE,     'tool':url_prefix+'tools/tool_install_micros_fishbot_env.py' ,'dep':[] },
     13: {'tip':'一键配置:python国内源','type':CONFIG_TOOL,'tool':url_prefix+'tools/tool_config_python_source.py' ,'dep':[] },
     14: {'tip':'一键安装:科学上网代理工具','type':INSTALL_SOFTWARE,'tool':url_prefix+'tools/tool_install_proxy_tool.py' ,'dep':[8] },
-    15: {'tip':'一键安装：QQ for Linux', 'type':INSTALL_SOFTWARE, 'tool': url_prefix+'tools/tool_install_qq.py', 'dep':[]},
+    15: {'tip':'一键安装:QQ for Linux', 'type':INSTALL_SOFTWARE, 'tool': url_prefix+'tools/tool_install_qq.py', 'dep':[]},
+    16: {'tip':'一键安装:Opencv for Linux', 'type':INSTALL_SOFTWARE, 'tool': url_prefix+'tools/tool_install_opencv_linux.py', 'dep':[]},
     # 77: {'tip':'测试模式:运行自定义工具测试'},
     }
 # 
@@ -53,24 +54,24 @@ for tool_id, tool_info in tools.items():
 
 def main():
     # download base
-    os.system("wget {} -O /tmp/fishinstall/{} --no-check-certificate".format(base_url,base_url.replace(url_prefix,'')))
+    #os.system("wget {} -O /tmp/fishinstall/{} --no-check-certificate".format(base_url,base_url.replace(url_prefix,'')))
     from tools.base import CmdTask,FileUtils,PrintUtils,ChooseTask,ChooseWithCategoriesTask
     from tools.base import encoding_utf8,osversion,osarch
     from tools.base import run_tool_file,download_tools
     from tools.base import config_helper
     # PrintUtils.print_delay(f"检测到你的系统版本信息为{osversion.get_codename()},{osarch}",0.001)
     # 使用量统计
-    CmdTask("wget https://fishros.org.cn/forum/topic/1733 -O /tmp/t1733 -q && rm -rf /tmp/t1733").run()
+    #CmdTask("wget https://fishros.org.cn/forum/topic/1733 -O /tmp/t1733 -q && rm -rf /tmp/t1733").run()
 
     # check base config
-    if not encoding_utf8:
-        print("Your system encoding not support ,will install some packgaes..")
-        CmdTask("sudo apt-get install language-pack-zh-hans -y",0).run()
-        CmdTask("sudo apt-get install apt-transport-https -y",0).run()
-        FileUtils.append("/etc/profile",'export LANG="zh_CN.UTF-8"')
-        print('Finish! Please Try Again!')
-        print('Solutions: https://fishros.org.cn/forum/topic/24 ')
-        return False
+    # if not encoding_utf8:
+    #     print("Your system encoding not support ,will install some packgaes..")
+    #     CmdTask("sudo apt-get install language-pack-zh-hans -y",0).run()
+    #     CmdTask("sudo apt-get install apt-transport-https -y",0).run()
+    #     FileUtils.append("/etc/profile",'export LANG="zh_CN.UTF-8"')
+    #     print('Finish! Please Try Again!')
+    #     print('Solutions: https://fishros.org.cn/forum/topic/24 ')
+    #     return False
     PrintUtils.print_success("基础检查通过...")
 
     book = """
